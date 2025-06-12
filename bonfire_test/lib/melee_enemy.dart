@@ -1,15 +1,13 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:bonfire_test/shared/person_sprite_sheet.dart';
-// import 'package:example/shared/util/person_sprite_sheet.dart';
 import 'package:flutter/material.dart';
 
 // 敌人
-class MeleeEnemy extends SimpleEnemy  {
+class MeleeEnemy extends SimpleEnemy {
   late TextPaint _textPaint;
   final String text = 'MeleeEnemy';
-  MeleeEnemy({required Vector2 position})
+  MeleeEnemy({required super.position})
       : super(
-          position: position,
           animation: PersonSpritesheet().simpleAnimation(),
           size: Vector2.all(24),
           speed: 25,
@@ -18,9 +16,6 @@ class MeleeEnemy extends SimpleEnemy  {
 
   @override
   void update(double dt) {
-    // print('object');
-
-
     seeAndMoveToPlayer(
       closePlayer: (p) {
         animation?.showStroke(Colors.white, 1);
@@ -38,7 +33,6 @@ class MeleeEnemy extends SimpleEnemy  {
 
   @override
   Future<void> onLoad() {
-    /// Adds rectangle collision
     add(RectangleHitbox(size: size / 2, position: size / 4));
     _addsText();
     return super.onLoad();
